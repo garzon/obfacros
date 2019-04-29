@@ -4,7 +4,11 @@ obfacros - a set of macros written in C++14 with g++5, that can be used to obfus
 
 I use this to generate the CTF challenge of "Obfuscating Macros I/II" in DDCTF/*ctf 2019.
 
-## feature
+## Demo
+
+Please find the `demo.cpp`. To compile, just `g++ demo.cpp -std=c++14 -o demo.out`.
+
+## Features
 
 - easy to use: header-only, just include the provided `obfacros.hpp` and write your code in a way similar to plain c/c++, then compile with g++.
 - easy to disable: to disable the obfuscation, you just need to replace the macros by normal code like: `#define FOR(init, cond, end, ...) for(init; cond; end) { __VA_ARGS__; }`
@@ -12,22 +16,36 @@ I use this to generate the CTF challenge of "Obfuscating Macros I/II" in DDCTF/*
 
 If necessary, the macros may be modified into another form which do not require any features of C++14 or g++.
 
-## usage
+## Usage
 
 1. `#include "obfacros.hpp"`
 2. write your code using the macros rather than the `for`/`if`/`while` c/c++ keywords
 3. compile and enjoy!
 
-## rules and warnings
+## Basic rules and WARNINGS
 
 0. Using all macros(like `FOR`/`IF`/`RETURN`...) ONLY IN the scope between `FUNCTION_START(var_to_accept_return_value)` and `FUNCTION_END;`
 1. `DO NOT declare variables` inside the scope. Please declare all the variables outside in advance.
 2. If you would like to write a clause(means `else`/`else if` in C) after a `IF`/`ELSE`, please use the form `IF_ELSE`/`ELIF_ELSE` instead of `IF`/`ELIF`. If no clause following, please use the form `IF`/`ELIF`.
 
-## demo
-
-Please find the `demo.cpp`. To compile, just `g++ demo.cpp -std=c++14 -o demo.out`.
-
-## document
+## Document
 
 Coming soon...
+
+#### FUNCTION_START(retVal) and FUNCTION_END
+
+#### FOR
+
+#### IF
+
+#### WHILE
+
+#### RETURN
+
+### Advanced features
+
+#### BLOCK
+
+#### MAKE_BLOCK_WITH_NAME
+
+#### INCLUDE_BLOCK
