@@ -11,7 +11,7 @@ Please find the `demo.cpp`. To compile, just `g++ demo.cpp -std=c++14 -o demo.ou
 ## Features
 
 - easy to use: header-only, just include the provided `obfacros.hpp` and write your code in a way similar to plain c/c++, then compile with g++.
-- easy to disable: to disable the obfuscation, you just need to replace the macros by normal code like: `#define FOR(init, cond, end, ...) for(init; cond; end) { __VA_ARGS__; }`
+- easy to disable: to disable the obfuscation, you just need to replace the macros by normal code like: `#define FOR(init, cond, end, ...) for(init; cond; end) { __VA_ARGS__; }`. Check `demo_obfacros_disabled.cpp` and the section `A way to disable the obfuscation` in the document.
 - much harder for reverse-engineering: by flattening the control flow and using dynamic JUMPs
 
 If necessary, the macros may be modified into another form which do not require any features of C++14 or g++.
@@ -84,7 +84,7 @@ Create a code block with a name. Just like `if (false) { name: code };` in c/c++
 #define FUNCTION_START(...)
 #define FUNCTION_END
 #define BLOCK(...) { __VA_ARGS__; }
-#define IF(expr, ...) if (expr) { __VA_ARGS__; }
+#define IF(expr, ...) if (expr) { __VA_ARGS__; } else {}
 #define FOR(init, cond, end, ...) for(init; cond; end) { __VA_ARGS__; }
 #define WHILE(expr, ...) while(expr) { __VA_ARGS__; }
 #define IF_ELSE(expr, ...) if (expr) { __VA_ARGS__; }
