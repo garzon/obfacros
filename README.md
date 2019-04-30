@@ -26,26 +26,27 @@ If necessary, the macros may be modified into another form which do not require 
 
 0. Using all macros(like `FOR`/`IF`/`RETURN`...) ONLY IN the `obfacros scope`(between `FUNCTION_START(var_to_accept_return_value)` and `FUNCTION_END;`)
 1. `DO NOT declare variables` inside the scope. Please declare all the variables outside in advance.
-2. If you would like to write a clause(means `else`/`else if` in C) after a `IF`, please use the form `IF_ELSE`/`ELIF_ELSE` instead of `IF`/`ELIF`. If no clause following, please use the form `IF`/`ELIF`. Refer to the `IF` section in the document below.
-3. Avoid using `{}` in the obfacros scope. If you want to use `{}` anyway, please do not use any macros inside the `{}`(before the bracket is closed).
+2. Avoid using `{}` in the obfacros scope. If you want to use `{}` anyway, please do not use any obfacros inside the `{}`(before the bracket is closed).
 
 ## Document
 
 ### Basic features
 
-#### `FUNCTION_START(retVal)` and `FUNCTION_END`
+#### `FUNCTION_START(retVal)` and `FUNCTION_END;`
 
-Write this before using any other obfacros to create a `scope of obfacros` (or we call it `obfacros scope` or `the scope`). `retVal` specifies the variable to be assigned when `RETURN`.
+Write this before using any other obfacros to create a `scope of obfacros` (or we call it `obfacros scope` or `the scope`).    
 
-#### FOR(init, cond, end, ...)
+`retVal` specifies the variable to be assigned when `RETURN`. If you do not use `RETURN`, just fill in a random variable.
+
+#### `FOR(init, cond, end, ...);`
 
 just like `for (init; cond; end) { ... }` in c/c++
 
-#### WHILE(expr, ...)
+#### `WHILE(expr, ...);`
 
 just like `while (expr) { ... }` in c/c++
 
-#### `IF(expr, ...)` and `IF_ELSE(expr, ...)`
+#### `IF(expr, ...);` and `IF_ELSE(expr, ...)`
 
 just like `if (expr) { ... }` in c/c++, but with a difference that:
 
@@ -54,16 +55,22 @@ just like `if (expr) { ... }` in c/c++, but with a difference that:
 
 In a word, before you use any `ELIF` or `ELSE`, please check the previous macro is with the suffix `_ELSE`. Likewise, we also have `ELIF` and `ELIF_ELSE`.
 
-#### RETURN(val)
+#### `RETURN(val);`
 
 Jump to next line of `FUNCTION_END`(jump out of the `scope of obfacros`) and assign the `val` to `retVal` that specified in `FUNCTION_START`.
 
 ### Advanced features
 
-Coming soon...
+If you use any of advanced features, you may not easily disable the obfuscation because there is no corresponding features in the language of c/c++.
 
-#### BLOCK
+#### `BLOCK(...);`
 
-#### MAKE_BLOCK_WITH_NAME
+Manually create a code block. Just like `{ code };` in c/c++.
 
-#### INCLUDE_BLOCK
+#### `MAKE_BLOCK_WITH_NAME(name, ...);`
+
+Create a code block with a name. Just like `if (false) { name: code };` in c/c++.
+
+#### `INCLUDE_BLOCK(name);`
+
+"include" a previously defined named block(by `MAKE_BLOCK_WITH_NAME`). Like a function call in c/c++ with variables shared.
