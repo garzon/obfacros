@@ -61,7 +61,9 @@ Jump to next line of `FUNCTION_END`(jump out of the `scope of obfacros`) and ass
 
 ### Advanced features
 
-If you use any of advanced features, you may not easily disable the obfuscation because there is no corresponding features in the language of c/c++.
+If you use any of advanced features, you may not easily disable the obfuscation because there is no corresponding features in the language of c/c++.    
+
+For demo, please visit the source code of one of my CTF reverse challenge: https://github.com/garzon/my_ctf_challenges_source_code/tree/master/starctf_2019/obfuscating_macros_II
 
 #### `BLOCK(...);`
 
