@@ -2,7 +2,7 @@
 
 obfacros - a set of macros written in C++14 with g++5, that can be used to obfuscate your c/c++ code, to make it harder for reverse-engineering.     
 
-I use this to generate the CTF challenge of "Obfuscating Macros I/II" in DDCTF/*ctf 2019.
+I use this to generate the CTF challenge of "Obfuscating Macros I/II" in `DDCTF` / `*ctf` 2019.
 
 ## Demo
 
@@ -74,3 +74,22 @@ Create a code block with a name. Just like `if (false) { name: code };` in c/c++
 #### `INCLUDE_BLOCK(name);`
 
 "include" a previously defined named block(by `MAKE_BLOCK_WITH_NAME`). Like a function call in c/c++ with variables shared.
+
+### A way to disable the obfuscation
+
+1. Comment out `#include "obfacros.hpp"`
+2. Using the code below to replace the obfacros:
+
+```c++
+#define FUNCTION_START(...)
+#define FUNCTION_END
+#define BLOCK(...) { __VA_ARGS__; }
+#define IF(expr, ...) if (expr) { __VA_ARGS__; }
+#define FOR(init, cond, end, ...) for(init; cond; end) { __VA_ARGS__; }
+#define WHILE(expr, ...) while(expr) { __VA_ARGS__; }
+#define IF_ELSE(expr, ...) if (expr) { __VA_ARGS__; }
+#define ELSE(...) else { __VA_ARGS__; }
+#define ELIF(expr, ...) else { if (expr) { __VA_ARGS__; } }
+#define ELIF_ELSE(expr, ...) else if (expr) { __VA_ARGS__; }
+#define RETURN(...) return (__VA_ARGS__)
+```
